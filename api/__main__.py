@@ -135,7 +135,13 @@ async def match(body: dict = Body(...)):
             number = m.group(1)
             break
         # 纯数字番号（1Pondo 格式）: 010116, 010116_220
-        m = re.search(r"(\d{6}_?\d{2,3})", s)
+        # 1Pondo 格式: 010116 220 或 010116_220
+        m = re.search(r"(\d{6})[ _](\d{2,3})", s)
+        if m:
+            number = m.group(1) + "_" + m.group(2)
+            break
+        # 也尝试纯6位数字
+        m = re.search(r"(\d{6})", s)
         if m:
             number = m.group(1)
             break
