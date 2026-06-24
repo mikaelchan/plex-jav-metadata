@@ -16,9 +16,7 @@ RUN sed -i "s@deb.debian.org@$APT_MIRROR@g" /etc/apt/sources.list.d/debian.sourc
     rm -rf /var/lib/apt/lists/*
 
 COPY . /app/
-RUN pip install --no-cache-dir -i $PIP_MIRROR poetry && \
-    poetry config virtualenvs.create false && \
-    poetry install --without dev
+RUN pip install --no-cache-dir -i $PIP_MIRROR -e .
 
 RUN mkdir -p /data
 
