@@ -66,12 +66,15 @@ def _render_xml(provider: dict) -> str:
     for f in provider.get("Feature", []):
         features_parts.append(f'<Feature type="{f["type"]}" key="{f["key"]}"/>')
     features_xml = "".join(features_parts)
+    i = provider['identifier']
+    t = provider['title']
+    v = provider.get('version', '')
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         "<MediaProvider>\n"
-        f'  <Identifier>{provider['identifier']}</Identifier>\n'
-        f'  <Title>{provider['title']}</Title>\n'
-        f'  <Version>{provider.get('version', '')}</Version>\n'
+        f'  <Identifier>{i}</Identifier>\n'
+        f'  <Title>{t}</Title>\n'
+        f'  <Version>{v}</Version>\n'
         f'  {types_xml}\n'
         f'  {features_xml}\n'
         "</MediaProvider>"
