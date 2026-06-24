@@ -16,8 +16,7 @@ RUN sed -i "s@deb.debian.org@$APT_MIRROR@g" /etc/apt/sources.list.d/debian.sourc
     rm -rf /var/lib/apt/lists/*
 
 COPY . /app/
-RUN pip install --no-cache-dir -i $PIP_MIRROR -e . ; \
-    pip install --no-cache-dir -i $PIP_MIRROR fastapi uvicorn httpx cloudscraper lxml pillow confz pydantic-extra-types
+RUN pip install --no-cache-dir -i $PIP_MIRROR -e . fastapi uvicorn httpx cloudscraper lxml pillow confz pydantic-extra-types pendulum slimeface cryptography pycryptodome tqdm colorama pretty-errors
 
 RUN mkdir -p /data
 
